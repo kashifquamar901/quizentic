@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .quiz-container { max-width: 700px; margin: 40px auto; }
+    .btn-outline-dark.active { background-color: #198754; color: white; border-color: #198754; }
+  </style>
+</head>
+<body>
+  <div class="container quiz-container">
+    <h2 id="quiz-subject" class="mb-4 text-center"></h2>
+    <div id="timer" class="text-end mb-2 fw-bold text-danger">Time: </div>
+    <div id="quiz-box">
+      <h4 id="question-title"></h4>
+      <div id="options" class="my-3"></div>
+      <div class="d-flex justify-content-between">
+        <button id="prev-btn" class="btn btn-secondary">Previous</button>
+        <button id="next-btn" class="btn btn-primary">Next</button>
+      </div>
+    </div>
+    <div id="result-box" class="d-none mt-4 text-center">
+      <h3 id="score-text"></h3>
+      <a href="subject-details.html" class="btn btn-success mt-3">Try Another Quiz</a>
+    </div>
+  </div>
+
+  <!-- External questions data -->
+  <script src="../Questions/question.js"></script>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawSubject = urlParams.get('subject')?.toLowerCase().replace(/\s+/g, '') || '';
+    const difficulty = urlParams.get('difficulty') || 'easy';
+    const questionCount = parseInt(urlParams.get('questions')) || 5;
+    const timeLimit = (parseInt(urlParams.get('time')) || 5) * 60;
+
+    const subjectMap = {
+      python: 'python',
+      html: 'html',
+      css: 'css',
+      javascript: 'javascript',
+      c: 'c'
+    };
+
+    let subject = '';
+    for (const key in subjectMap) {
+      if (rawSubject.includes(key)) {
+        subject = subjectMap[key];
+        break;
+      }
+    }
+
+    if (!subject) {
+      alert('Invalid subject passed.');
+      window.location.href = 'subject-details.html';
+    }
+
+    const questions = quizData[subject]?.[difficulty]?.slice(0, questionCount) || [];
+    if (!questions.length) {
+      alert('No questions available for ' + subject.toUpperCase() + ' ' + difficulty);
+      window.location.href = 'subject-details.html';
+    }
+
+    document.getElementById('quiz-subject').textContent = `Subject: ${subject.toUpperCase()} | Difficulty: ${difficulty}`;
+
+    let currentQuestion = 0, score = 0, timer = timeLimit;
+    let userAnswers = Array(questionCount).fill(null);
+    const questionTitle = document.getElementById('question-title');
+    const optionsBox = document.getElementById('options');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+
+    function showQuestion(i) {
+      const q = questions[i];
+      questionTitle.textContent = `Q${i + 1}. ${q.question}`;
+      optionsBox.innerHTML = '';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-outline-dark me-2 mb-2';
+        btn.textContent = opt;
+        btn.onclick = () => {
+          userAnswers[i] = opt;
+          showQuestion(i);
+        };
+        if (userAnswers[i] === opt) btn.classList.add('active');
+        optionsBox.appendChild(btn);
+        btn.addEventListener('click', () => btn.classList.add('active'));
+      });
+      prevBtn.disabled = i === 0;
+      nextBtn.textContent = (i === questions.length - 1 ? 'Submit' : 'Next');
+    }
+
+    function showResult() {
+      document.getElementById('quiz-box').classList.add('d-none');
+      const scoreText = document.getElementById('score-text');
+      score = userAnswers.reduce((acc, ans, idx) => ans === questions[idx].answer ? acc + 1 : acc, 0);
+      scoreText.textContent = `You scored ${score} out of ${questions.length}`;
+      document.getElementById('result-box').classList.remove('d-none');
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (!userAnswers[currentQuestion]) {
+        alert('Please select an answer first.');
+        return;
+      }
+      currentQuestion < questions.length - 1 ? showQuestion(++currentQuestion) : showResult();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQuestion > 0) showQuestion(--currentQuestion);
+    });
+
+    function startTimer() {
+      const timerBox = document.getElementById('timer');
+      const interval = setInterval(() => {
+        const m = Math.floor(timer / 60), s = timer % 60;
+        timerBox.textContent = `Time: ${m}:${s.toString().padStart(2,'0')}`;
+        if (timer-- <= 0) {
+          clearInterval(interval);
+          alert('Time up!');
+          showResult();
+        }
+      }, 1000);
+    }
+
+    showQuestion(currentQuestion);
+    startTimer();
+  </script>
+</body>
+</html>
