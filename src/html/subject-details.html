@@ -78,17 +78,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Script to extract subject name from URL -->
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const subject = urlParams.get('subject');
-
-    if (subject) {
-      document.getElementById('subject-title').textContent = subject;
-      document.getElementById('subject-input').value = subject;
-    } else {
-      document.getElementById('subject-title').textContent = "Unknown Subject";
-    }
-  </script>
+  
   <!-- Script to extract subject name from URL -->
   <script>
     const urlParams = new URLSearchParams(window.location.search);
