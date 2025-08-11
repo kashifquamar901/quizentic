@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     },
     email : {
         type : String,
-        required : true
+        required : true,
+        unique : true
     },
     password : {
         type : String,
@@ -29,6 +30,8 @@ userSchema.pre("save",function(next){
     if(!this.isModified("password")) return next();
 
     this.password = bcrypt.hashSync(this.password,10)
+
+    next()
 })
 
 userSchema.methods.isPasswordCorrect = async function(password){
@@ -51,7 +54,7 @@ userSchema.methods.generateAccessToken = async function(){
 }
 
 userSchema.methods.generateRefreshToken = function(){
-    jwt.sign(
+    return jwt.sign(
         {
             _id : this._id
         },
