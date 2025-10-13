@@ -16,7 +16,7 @@
     <div class="card bg-secondary text-white shadow" style="width:100%; max-width:400px;">
       <div class="card-body">
         <h2 class="text-center mb-4" style="color:#24c4fb;">Login</h2>
-        <form>
+        <form id="loginForm">
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" required>
@@ -28,7 +28,7 @@
               <a href="forgot-password.html" class="link-info small">Forget Password?</a>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary w-100">Login</button>
+          <button type="submit" class="btn btn-primary w-100" id="loginBtn">Login</button>
         </form>
         <div class="text-center mt-3">
           <a href="register.html" class="link-info">Don't have an account? Register</a>
@@ -36,5 +36,9 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../script/env.js"></script>
+  <script src="../script/login.js"></script>
 </body>
 </html>
