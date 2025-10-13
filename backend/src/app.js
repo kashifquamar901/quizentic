@@ -10,6 +10,11 @@ app.use(express.urlencoded({extended : true}))
 app.use(cookieParser())
 app.use(cors())
 
+
+app.get("/",(req,res) => {
+    res.json({success: true,message : "All done"})
+})
+
 app.use("/api/v1/user",userRouter)
 
 export {app}
