@@ -1,1 +1,1 @@
-const BASE_URL_USER = "http://localhost:3000/api/v1/user"
+const BASE_URL_USER = "https://quizentic-backend.onrender.com/api/v1/user"
