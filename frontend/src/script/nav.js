@@ -1,10 +1,15 @@
 const user = localStorage.getItem("user")
 const dropdown = document.getElementById("dropdown")
 const login = document.getElementById("login")
+const homeLoginBtn=document.getElementById("homeLoginBtn")
 
 if (user) {
     dropdown.style.display = "block"
     login.style.display = "none"
+
+ if (homeLoginBtn)   {
+    homeLoginBtn.style.display= "none"
+ }
     
     document.getElementById("logoutBtn").addEventListener("click",async() => {
         localStorage.clear()

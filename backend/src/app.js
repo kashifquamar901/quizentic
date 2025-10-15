@@ -2,7 +2,9 @@ import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import userRouter from "./routes/user.routes.js"
+import dotenv from "dotenv"
 
+dotenv.config()
 const app = express()
 
 app.use(express.json())

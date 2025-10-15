@@ -1,64 +1,57 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quizentic</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-.blur-bg {
-  filter: blur(5px);
-  transition: filter 0.2s;
-}
-.modal-backdrop.show {
-  opacity: 0.6 !important;
-}
-</style>
-
+  <style>
+    .blur-bg {
+      filter: blur(5px);
+      transition: filter 0.2s;
+    }
+    .modal-backdrop.show {
+      opacity: 0.6 !important;
+    }
+  </style>
 </head>
-
 <body class="bg-light">
-
+<!-- Wrap all main content in wrapper div -->
+<div id="wrapper">
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand fs-3 fw-medium" href="#">Quizentic</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        <li class="nav-item">
-          <a class="nav-link active" href="./index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./src/html/subject.html">Subjects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./src/html/about.html">About Us</a>
-        </li>
-      </ul>
-
-      <!-- Login / Sign Up button -->
-      <a href="./src/html/login.html" class="btn btn-light text-primary fw-medium ms-3" id="login">Login / Sign Up</a>
-
-      <!-- User Dropdown -->
-      <div class="dropdown ms-3" style="display: none;" id="dropdown">
-        <a class="btn btn-light text-primary fw-medium dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-user"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-          <li><a class="dropdown-item" href="./src/html/dashboard.html">Dashboard</a></li>
-          <li><button class="dropdown-item"  id="logoutBtn">Logout</button></li>
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3 fw-medium" href="#">Quizentic</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./src/html/subject.html">Subjects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./src/html/about.html">Contact Us</a>
+          </li>
         </ul>
+        <a  href="./src/html/login.html" class="btn btn-light text-primary fw-medium ms-3" id="login">Login / Sign Up</a>
+        <div class="dropdown ms-3" style="display: none;" id="dropdown">
+          <a class="btn btn-light text-primary fw-medium dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="./src/html/dashboard.html">Dashboard</a></li>
+            <li><button class="dropdown-item"  id="logoutBtn">Logout</button></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <!-- Hero Section -->
   <section class="bg-dark text-white text-center d-flex flex-column justify-content-center align-items-center"
@@ -67,10 +60,93 @@
     <h1 class="display-4 fw-bold mt-5">Welcome to <span class="text-info">Quizentic</span></h1>
     <p class="fs-3 mt-5 fst-italic">Learn Smart. Quiz Hard. Be Quizentic.</p>
     <div class="section-button mt-5">
-    <a href="./src/html/login.html" class="btn btn-light text-primary btn-lg fw-medium ms-3">Login/Sign Up</a>
+      <a id="homeLoginBtn" href="./src/html/login.html" class="btn btn-light text-primary btn-lg fw-medium ms-3">Login/Sign Up</a>
+      <a id="getStartedBtn" class="btn btn-light text-primary btn-lg fw-medium ms-3">Get Started</a>
+    </div>
+  </section>
 
-    <a id="getStartedBtn"  class="btn btn-light text-primary btn-lg fw-medium ms-3">Get Started</a>
-<!-- Modal Overlay -->
+  <!-- Subjects Section -->
+  <div class="container my-5">
+    <h2 class="text-center fw-bold mb-4 shadow p-3 mb-5 bg-body rounded">Subjects Information</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="bg-dark p-4 rounded text-center h-100">
+          <a href="./src/html/subject-details.html?subject=HTML" class="mb-0 text-decoration-none text-white subject-link">Hyper Text Markup Language</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="bg-dark p-4 rounded text-center h-100">
+          <a href="./src/html/subject-details.html?subject=CSS" class="mb-0 text-decoration-none text-white subject-link">Cascading Style Sheet</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="bg-dark p-4 rounded text-center h-100">
+          <a href="./src/html/subject-details.html?subject=Python%20Programming" class="mb-0 text-decoration-none text-white subject-link">Python Programming</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="bg-dark p-4 rounded text-center h-100">
+          <a href="./src/html/subject-details.html?subject=C%20Programming" class="mb-0 text-decoration-none text-white subject-link">C Programming</a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="bg-dark p-4 rounded text-center h-100">
+          <a href="./src/html/subject-details.html?subject=JavaScript" class="mb-0 text-decoration-none text-white subject-link">JavaScript</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="footer d-flex flex-column flex-md-row justify-content-md-evenly align-items-start bg-primary text-white p-4">
+    <div class="footer-right col-12 col-md-4 d-flex flex-column mb-4 mb-md-0 ">
+      <div class="start-footer">
+        <h1 class="fw-bold d-block">Quizentic</h1>
+        <span class="d-block fw-light mt-4 fs-5" style="width:300px">
+          “It’s not just about right answers. It’s about challenging yourself and learning something new every day.”
+        </span>
+      </div>   
+      <div class="rights-reserved mt-4">
+        <i class="fa-solid fa-copyright"></i>
+        2025 The Quizentic. All Rights Reserved.
+      </div>
+      <div class="social-icons mb-2 mt-4">
+        <a href="#"><i class="fa-brands fa-facebook me-3 fs-4"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram me-3 fs-4"></i></a>
+        <a href="#"><i class="fa-brands fa-github fs-4"></i></a>
+      </div>
+    </div>
+    <div class="footer-medium col-12 col-md-4 mb-4 mb-md-0">
+      <span class="text-white fs-3 fw-bold">Quick Links</span>
+      <div class="d-flex flex-column">
+        <a href="./index.html" class="text-white text-decoration-none mb-2 mt-1">Home</a>
+        <a href="./src/html/subject.html" class="text-white text-decoration-none mb-2 mt-1">Subjects</a>
+        <a href="./src/html/about.html" class="text-white text-decoration-none mb-2 mt-1">About Us</a>
+      </div>
+    </div>
+    <!-- Add emailjs script -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <!-- Contact Form -->
+    <form id="contact-form" class="footer-end p-2" style="max-width: 350px; width: 100%;">
+      <span class="text-white mb-5 fs-4 fw-bold">Contact Us</span>
+      <p>E-mail : quizentic@gmail.com</p>
+      <div class="input-group mb-3">
+        <input type="text" name="user_name" class="form-control" placeholder="Name" required>
+      </div>
+      <div class="input-group mb-3">
+        <input type="email" name="user_email" class="form-control" placeholder="E-mail" required>
+      </div>
+      <div class="input-group">
+        <textarea name="message" class="form-control" placeholder="Message" required></textarea>
+      </div>
+      <div class="d-grid gap-2 col-12 mx-auto mt-2">
+        <button class="btn btn-light text-secondary" type="submit">Send</button>
+      </div>
+    </form>
+  </footer>
+</div> <!-- End wrapper -->
+
+<!-- Modal Overlay (outside wrapper) -->
 <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-light shadow">
@@ -82,163 +158,63 @@
         Please login first to attempt the quiz.
       </div>
       <div class="modal-footer">
-        <a href="./login.html" class="btn btn-primary w-100">Go to Login</a>
+        <a href="./src/html/login.html" class="btn btn-primary w-100">Go to Login</a>
       </div>
     </div>
   </div>
 </div>
 
-
-    </div>
-
-  </section>
-
-  <!-- Subjects Section -->
-  <div class="container my-5 ">
-    <h2 class="text-center fw-bold mb-4 shadow p-3 mb-5 bg-body rounded">Subjects Information</h2>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-dark p-4 rounded text-center h-100">
-          <a href="./src/html/subject-details.html?subject=HTML" class="mb-0 text-decoration-none text-white ">Hyper Text Markup Language</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-dark p-4 rounded text-center h-100">
-          <a href="./src/html/subject-details.html?subject=CSS" class="mb-0 text-decoration-none text-white">Cascading Style Sheet</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-dark p-4 rounded text-center h-100">
-          <a href="./src/html/subject-details.html?subject=Python%20Programming" class="mb-0 text-decoration-none text-white">Python Programming</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-dark p-4 rounded text-center h-100">
-          <a href="./src/html/subject-details.html?subject=C%20Programming" class="mb-0 text-decoration-none text-white">C Programming</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="bg-dark p-4 rounded text-center h-100">
-          <a href="./src/html/subject-details.html?subject=JavaScript" class="mb-0 text-decoration-none text-white">JavaScript</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- footer -->
-  <footer class="footer d-flex flex-column flex-md-row justify-content-md-evenly align-items-start bg-primary text-white p-4">
-  <div class="footer-right col-12 col-md-4 d-flex flex-column mb-4 mb-md-0 ">
-    <div class="start-footer">
-      <h1 class="fw-bold d-block">Quizentic</h1>
-      <span class="d-block fw-light mt-4 fs-5" style="width:300px">
-        “It’s not just about right answers. It’s about challenging yourself and learning something new every day.”
-      </span>
-    </div>   
-    <div class="rights-reserved mt-4">
-      <i class="fa-solid fa-copyright"></i>
-      2025 The Quizentic. All Rights Reserved.
-    </div>
-     <div class="social-icons mb-2 mt-4">
-      <a href="#"><i class="fa-brands fa-facebook me-3 fs-4"></i></a>
-      <a href="#"><i class="fa-brands fa-instagram me-3 fs-4"></i></a>
-      <a href="#"><i class="fa-brands fa-github fs-4"></i></a>
-    </div>
-  </div>
-
-  <div class="footer-medium col-12 col-md-4 mb-4 mb-md-0">
-    <span class="text-white fs-3 fw-bold">Quick Links</span>
-    <div class="d-flex flex-column">
-      <a href="./index.html" class="text-white text-decoration-none mb-2 mt-1">Home</a>
-      <a href="./src/html/subject.html" class="text-white text-decoration-none mb-2 mt-1">Subjects</a>
-      <!-- <a href="#" class="text-white text-decoration-none mb-2 mt-1">Result</a> -->
-      <a href="./src/html/about.html" class="text-white text-decoration-none mb-2 mt-1">About Us</a>
-    </div>
-  </div>
-
-  <!-- Add emailjs script -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<!-- Contact Form -->
-<form id="contact-form" class="footer-end p-2" style="max-width: 350px; width: 100%;">
-  <span class="text-white mb-5 fs-4 fw-bold">Contact Us</span>
-  <p>E-mail : quizentic@gmail.com</p>
-
-  <div class="input-group mb-3">
-    <input type="text" name="user_name" class="form-control" placeholder="Name" required>
-  </div>
-
-  <div class="input-group mb-3">
-    <input type="email" name="user_email" class="form-control" placeholder="E-mail" required>
-  </div>
-
-  <div class="input-group">
-    <textarea name="message" class="form-control" placeholder="Message" required></textarea>
-  </div>
-
-  <div class="d-grid gap-2 col-12 mx-auto mt-2">
-    <button class="btn btn-light text-secondary" type="submit">Send</button>
-  </div>
-</form>
-</footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="./src/script/nav.js"></script>
-  <script src="./src/script/env.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-  // Initialize EmailJS
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./src/script/nav.js"></script>
+<script src="./src/script/env.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
   (function() {
     emailjs.init("1ZBPY16B1iKT9T27H"); 
   })();
-
-  // Handle form submit
   document.getElementById("contact-form").addEventListener("submit", function(event) {
     event.preventDefault();
-
     emailjs.sendForm('service_uti8sqe', 'template_dsayrti', this)
       .then(function() {
         alert('✅ Message sent successfully!');
       }, function(error) {
         alert('❌ Failed to send message: ' + JSON.stringify(error));
       });
-
     this.reset(); 
   });
-</script>
-<script>
-  // This function checks login status
-  function handleGetStartedClick(e) {
-    // Assume 'user' is saved in localStorage after login as JSON
-    const user = localStorage.getItem('user');
-    if (user) {
-      // If logged in, redirect to quiz page
-      console.log("User is logged in.");
-      window.location.href = "./src/html/subject.html";
-    } else {
-      // If not logged in, blur background and show modal
-      console.log("User is not logged in.");
-      e.preventDefault();
-      document.body.classList.add("blur-bg");
-      var modal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
-      modal.show();
 
-      // Remove blur when modal closes
-      document.getElementById('loginRequiredModal').addEventListener('hidden.bs.modal', function () {
-        document.body.classList.remove("blur-bg");
-      });
-    }
+  // Modal login logic
+  function openLoginModal(e) {
+    e.preventDefault();
+    document.getElementById('wrapper').classList.add("blur-bg");
+    var modal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+    modal.show();
+    document.getElementById('loginRequiredModal').addEventListener('hidden.bs.modal', function () {
+      document.getElementById('wrapper').classList.remove("blur-bg");
+    }, { once: true });
   }
 
-  // Assign handler on DOM Ready
+  // Get Started & Subjects Logic
   document.addEventListener('DOMContentLoaded', function() {
+    // Get Started button
     var getStartedBtn = document.getElementById("getStartedBtn");
-    if(getStartedBtn){ getStartedBtn.addEventListener("click", handleGetStartedClick); }
+    if(getStartedBtn){ 
+      getStartedBtn.addEventListener("click", function(e){
+        const user = localStorage.getItem('user');
+        if (!user) openLoginModal(e);
+        else window.location.href = "./src/html/subject.html";
+      });
+    }
+    // Subjects Section links
+    var subjectLinks = document.querySelectorAll('.subject-link');
+    subjectLinks.forEach(function(link){
+      link.addEventListener("click", function(e){
+        const user = localStorage.getItem('user');
+        if (!user) openLoginModal(e);
+        // if logged in, continues default action
+      });
+    });
   });
 </script>
-
-
 </body>
-
 </html>
