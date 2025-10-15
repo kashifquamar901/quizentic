@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
     integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+.blur-bg {
+  filter: blur(5px);
+  transition: filter 0.2s;
+}
+.modal-backdrop.show {
+  opacity: 0.6 !important;
+}
+</style>
+
 </head>
 
 <body class="bg-light">
@@ -57,8 +67,27 @@
     <h1 class="display-4 fw-bold mt-5">Welcome to <span class="text-info">Quizentic</span></h1>
     <p class="fs-3 mt-5 fst-italic">Learn Smart. Quiz Hard. Be Quizentic.</p>
     <div class="section-button mt-5">
-      <a href="./src/html/login.html" class="btn btn-light text-primary btn-lg fw-medium ms-3">Login/Sign Up</a>
-      <a href="./src/html/subject.html" class="btn btn-light text-primary btn-lg fw-medium ms-3">Get Started </a>
+    <a href="./src/html/login.html" class="btn btn-light text-primary btn-lg fw-medium ms-3">Login/Sign Up</a>
+
+    <a id="getStartedBtn"  class="btn btn-light text-primary btn-lg fw-medium ms-3">Get Started</a>
+<!-- Modal Overlay -->
+<div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-light shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginRequiredModalLabel">Quizentic Login Required</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Please login first to attempt the quiz.
+      </div>
+      <div class="modal-footer">
+        <a href="./login.html" class="btn btn-primary w-100">Go to Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     </div>
 
@@ -178,6 +207,37 @@
     this.reset(); 
   });
 </script>
+<script>
+  // This function checks login status
+  function handleGetStartedClick(e) {
+    // Assume 'user' is saved in localStorage after login as JSON
+    const user = localStorage.getItem('user');
+    if (user) {
+      // If logged in, redirect to quiz page
+      console.log("User is logged in.");
+      window.location.href = "./src/html/subject.html";
+    } else {
+      // If not logged in, blur background and show modal
+      console.log("User is not logged in.");
+      e.preventDefault();
+      document.body.classList.add("blur-bg");
+      var modal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+      modal.show();
+
+      // Remove blur when modal closes
+      document.getElementById('loginRequiredModal').addEventListener('hidden.bs.modal', function () {
+        document.body.classList.remove("blur-bg");
+      });
+    }
+  }
+
+  // Assign handler on DOM Ready
+  document.addEventListener('DOMContentLoaded', function() {
+    var getStartedBtn = document.getElementById("getStartedBtn");
+    if(getStartedBtn){ getStartedBtn.addEventListener("click", handleGetStartedClick); }
+  });
+</script>
+
 
 </body>
 
